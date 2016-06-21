@@ -1,15 +1,18 @@
 import dao.AuthorDao;
+import dao.BookAuthorDao;
 import dao.BookDao;
 import dao.impl.AuthorDaoImpl;
+import dao.impl.BookAuthorDaoImpl;
 import dao.impl.BookDaoImpl;
 
 /**
  * Created by Денис on 11.06.2016.
  */
 public class Factory {
-    public static Factory instance = new Factory();
-    public BookDao bookDao;
-    public AuthorDao authorDao;
+    private static Factory instance = new Factory();
+    private BookDao bookDao;
+    private AuthorDao authorDao;
+    private BookAuthorDao bookAuthorDao;
 
     private Factory() { }
 
@@ -29,5 +32,12 @@ public class Factory {
             authorDao = new AuthorDaoImpl();
         }
         return authorDao;
+    }
+
+    public BookAuthorDao getBookAuthorDao(){
+        if (bookAuthorDao == null){
+            bookAuthorDao = new BookAuthorDaoImpl();
+        }
+        return bookAuthorDao;
     }
 }

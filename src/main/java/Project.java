@@ -1,7 +1,9 @@
 import dao.AuthorDao;
+import dao.BookAuthorDao;
 import dao.BookDao;
 import entity.Author;
 import entity.Book;
+import entity.BookAuthors;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,28 +16,39 @@ public class Project {
         Factory factory = Factory.getInstance();
         BookDao bookDao = factory.getBookDao();
         AuthorDao authorDao = factory.getAuthorDao();
+        BookAuthorDao bookAuthorDao = factory.getBookAuthorDao();
 
-        Author author = new Author();
-        author.setFirstName("Gayle");
-        author.setLastName("Laakmann");
-        author.setMiddleName("John");
+        /*BookAuthors bookAuthors = new BookAuthors();
 
-        authorDao.addAuthor(author);
+        bookAuthors.setBook(bookDao.getBook(1));
+        bookAuthors.setAuthor(authorDao.getAuthor(2));
+        bookAuthorDao.addBookAuthors(bookAuthors);
 
-        author.setFirstName("Bruce");
-        author.setLastName("Eckel");
-        author.setMiddleName("Joey");
+        bookAuthors.setBook(bookDao.getBook(5));
+        bookAuthors.setAuthor(authorDao.getAuthor(2));
+        bookAuthorDao.addBookAuthors(bookAuthors);
 
-        authorDao.addAuthor(author);
+        bookAuthors.setBook(bookDao.getBook(4));
+        bookAuthors.setAuthor(authorDao.getAuthor(1));
+        bookAuthorDao.addBookAuthors(bookAuthors);
 
-        List<Author> authors = authorDao.getAuthors();
+        bookAuthors.setBook(bookDao.getBook(3));
+        bookAuthors.setAuthor(authorDao.getAuthor(3));
+        bookAuthorDao.addBookAuthors(bookAuthors);*/
+
+
+
+        /*List<Book> books = bookDao.getBooks();
         System.out.println("---- add data into db ----");
-        System.out.println("id  first_name    middle_name   last_name");
-        for (Author a: authors) {
-            System.out.println(a.getId()+ " " + a.getFirstName() + "  "
-                    + a.getMiddleName()+ "    " + a.getLastName());
-        }
-        
+        System.out.println("id  isbn    title   description");
+
+        for (Book b: books) {
+            System.out.println(b.getId()+ "  " + b.getIsbn() + "  "
+                    + b.getTitle()+ "    " + b.getDescription());
+        }*/
+
+
+
         /*//add data into db
         Book book = new Book();
         book.setTitle("Thinking in java");
@@ -54,10 +67,10 @@ public class Project {
         book.setDescription("book about interview");
         book.setIsbn(784);
 
-        bookDao.addBook(book);
+        bookDao.addBook(book);*/
 
         List<Book> books = bookDao.getBooks();
-        System.out.println("---- add data into db ----");
+        System.out.println("---- data in db book ----");
         System.out.println("id  isbn    title   description");
 
         for (Book b: books) {
@@ -65,7 +78,7 @@ public class Project {
                     + b.getTitle()+ "    " + b.getDescription());
         }
 
-        System.out.println("---- get book #3 from db ----");
+        /*System.out.println("---- get book #3 from db ----");
         System.out.println("id  isbn    title   description");
         Book tempBook = bookDao.getBook(3);
         System.out.println(tempBook.getId()+ "  " + tempBook.getIsbn() + "  "
@@ -81,5 +94,28 @@ public class Project {
             System.out.println(b.getId()+ "  " + b.getIsbn() + "  "
                     + b.getTitle()+ "    " + b.getDescription());
         }*/
+
+        List<Author> authors = authorDao.getAuthors();
+        System.out.println("---- data in db author ----");
+        System.out.println("id  first_name    middle_name   last_name");
+        for (Author a: authors) {
+            System.out.println(a.getId()+ " " + a.getFirstName() + "  "
+                    + a.getMiddleName()+ "    " + a.getLastName());
+        }
+
+        List<BookAuthors> bookAuthorses = bookAuthorDao.getBookAuthors();
+        System.out.println("---- data in db book_authors ----");
+        System.out.println("id  isbn    title   description id  first_name    middle_name   last_name");
+
+        for (BookAuthors ba: bookAuthorses) {
+            Book book = ba.getBook();
+            Author author = ba.getAuthor();
+
+            System.out.print(book.getId()+ "  " + book.getIsbn() + "  "
+                    + book.getTitle()+ "    " + book.getDescription()+ "    ");
+
+            System.out.println(author.getId()+ " " + author.getFirstName() + "  "
+                    + author.getMiddleName()+ "    " + author.getLastName());
+        }
     }
 }

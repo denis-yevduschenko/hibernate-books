@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entity">
+
+    <class name="BookAuthors" table="book_authors">
+
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+
+        <many-to-one name="book" column="book_id" class="Book" lazy="false"/>
+        <many-to-one name="author" column="author_id" class="Author" lazy="false"/>
+    </class>
+
+</hibernate-mapping>
