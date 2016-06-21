@@ -1,4 +1,6 @@
+import dao.AuthorDao;
 import dao.BookDao;
+import entity.Author;
 import entity.Book;
 
 import java.sql.SQLException;
@@ -11,8 +13,30 @@ public class Project {
     public static void main(String[] args) throws SQLException {
         Factory factory = Factory.getInstance();
         BookDao bookDao = factory.getBookDao();
+        AuthorDao authorDao = factory.getAuthorDao();
 
-        //add data into db
+        Author author = new Author();
+        author.setFirstName("Gayle");
+        author.setLastName("Laakmann");
+        author.setMiddleName("John");
+
+        authorDao.addAuthor(author);
+
+        author.setFirstName("Bruce");
+        author.setLastName("Eckel");
+        author.setMiddleName("Joey");
+
+        authorDao.addAuthor(author);
+
+        List<Author> authors = authorDao.getAuthors();
+        System.out.println("---- add data into db ----");
+        System.out.println("id  first_name    middle_name   last_name");
+        for (Author a: authors) {
+            System.out.println(a.getId()+ " " + a.getFirstName() + "  "
+                    + a.getMiddleName()+ "    " + a.getLastName());
+        }
+        
+        /*//add data into db
         Book book = new Book();
         book.setTitle("Thinking in java");
         book.setDescription("decription language java");
@@ -56,6 +80,6 @@ public class Project {
         for (Book b: books) {
             System.out.println(b.getId()+ "  " + b.getIsbn() + "  "
                     + b.getTitle()+ "    " + b.getDescription());
-        }
+        }*/
     }
 }
