@@ -8,9 +8,6 @@ import util.HibernateUtil;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Денис on 11.06.2016.
- */
 public class BookDaoImpl implements BookDao {
 
     public void addBook(Book book) throws SQLException {

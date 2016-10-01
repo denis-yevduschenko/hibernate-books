@@ -5,9 +5,7 @@ import dao.impl.AuthorDaoImpl;
 import dao.impl.BookAuthorDaoImpl;
 import dao.impl.BookDaoImpl;
 
-/**
- * Created by Денис on 11.06.2016.
- */
+
 public class Factory {
     private static Factory instance = new Factory();
     private BookDao bookDao;
